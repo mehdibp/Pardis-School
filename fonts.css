@@ -1,0 +1,12 @@
+/* Fonts ---------------------------------------------------------------- */
+@font-face {
+  font-family: 'UKIJBom';
+  src: url('assets/fonts/UKIJ-Bom/UKIJBom.eot')   format('embedded-opentype'),
+       url('assets/fonts/UKIJ-Bom/UKIJBom.woff2') format('woff2'),
+       url('assets/fonts/UKIJ-Bom/UKIJBom.woff')  format('woff'),
+       url('assets/fonts/UKIJ-Bom/UKIJBom.ttf')   format('truetype');
+       
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,80 @@
+/* Base ----------------------------------------------------------------- */
+:root {
+  --color_1: #F3E2D4;
+  --color_2: #C5B0CD;
+  --color_3: #415E72;
+  --color_4: #17313E;
+}
+* { box-sizing: border-box; text-decoration: none; }
+body {
+  margin: 0;
+  font-family: "Vazir", sans-serif;
+  text-align: justify;
+  background: #0f2a38;
+  color: #fff;
+}
+
+/* Header: Capsular -> Fullwidth after scrolling ------------------------ */
+header {
+  position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+  background: rgba(255,255,255,.14); backdrop-filter: blur(8px);
+  border-radius: 40px; padding: 12px 25px; gap: 30px; width: 80%; 
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 1s ease; z-index: 1000;
+}
+header.scrolled {
+  top: 0; width: 100%; max-width: 100%;
+  border-radius: 0; padding: 15px 4%;
+}
+.nav-links   { display:flex; gap:20px; }
+.nav-links a { color:#fff; text-decoration:none; font-weight:700; }
+
+.logo-section     { display:flex; align-items:center; gap:10px; }
+.logo-section img { width:30px; height:30px; }
+
+.important-link {
+  background: var(--color_4); color:#fff; padding:6px 14px; border-radius:18px;
+  border:1px solid #fff; text-decoration:none; font-weight:700; transition:.25s;
+}
+.important-link:hover { background:#fff; color: var(--color_4); }
+
+
+/* Hero ----------------------------------------------------------------- */
+.hero{
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:100vh; padding: 120px 8% 0px; background-color: var(--color_4);
+}
+.hero-text    { padding-bottom: 40px; min-width: 0; z-index: 1;}
+.hero-text h1 { font-family: 'UKIJBom'; font-size: 5rem; margin:0; }
+.hero-text p  { font-family: 'UKIJBom'; font-size: 1.8rem; margin:16px 0; }
+
+.hero .cta {
+  display:block; margin-top:14px; padding:10px 20px; border:1px solid #fff;
+  border-radius:22px; text-decoration:none; color:#fff; width: max-content; float: left;
+}
+.hero img { max-width:360px; height:auto; }
+
+
+/* About Us ------------------------------------------------------------- */
+.about {
+  display: flex; align-items: center; gap: 40px; padding: 80px 8% 0px;
+  background: var(--color_1); color:#222;
+}
+.about-image img { max-width:360px; border-radius:14px; }
+.about-text         { flex:1; font-size:1.05rem; line-height:2; }
+.about-text a       { color:#0f2a38; font-weight:700; text-decoration:none; }
+.about-text a:hover { text-decoration:underline; }
+
+#myBtn { color: brown; text-decoration: underline; cursor: pointer; }
+
+
+
+
+/* Responsive ----------------------------------------------------------- */
+@media (max-width: 560px) {
+  header { max-width: 92vw; }
+  .hero  { flex-direction:column-reverse; text-align:center; gap:24px; }
+  .hero .cta { float: none; margin: 14px auto; }
+  .about { flex-direction:column; }
+}
+
