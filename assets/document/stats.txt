@@ -1,0 +1,3 @@
+# year, teachers, equipment, enrolled, alumni
+1402, 4, 198, 32, 120
+1403, 4, 201, 35, 126

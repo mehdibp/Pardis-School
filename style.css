@@ -10,9 +10,10 @@ body {
   margin: 0;
   font-family: "Vazir", sans-serif;
   text-align: justify;
-  background: #0f2a38;
+  background: var(--color_1);
   color: #fff;
 }
+
 
 /* Header: Capsular -> Fullwidth after scrolling ------------------------ */
 header {
@@ -68,13 +69,43 @@ header.scrolled {
 #myBtn { color: brown; text-decoration: underline; cursor: pointer; }
 
 
+/* Statistical information ---------------------------------------------- */
+.stats { padding:80px 6% 100px; background: var(--color_3); position:relative; }
+.stats-header    { display:flex; align-items:center; justify-content:center; margin-bottom:30px; }
+.stats-header h2 { margin:0; font-size:2rem; letter-spacing:.5px; }
+.year-badge {
+  display:inline-block; margin-right:10px; font-size:.9rem; padding:4px 10px;
+  border-radius:999px; background:rgba(255,255,255,.15);
+}
+.stats-grid {
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:36px;
+  align-items: start; text-align:center;
+}
+.stat-card     { padding:10px 12px; }
+.stat-icon img { user-select:none; pointer-events:none; }
+.stat-label    { margin-top:14px; font-weight:900; font-size:1.6rem; }
+.stat-value    { margin-top:6px; font-weight:900; font-size:2.4rem; }
+
+
 
 
 /* Responsive ----------------------------------------------------------- */
+@media (max-width: 1000px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width:720px){
+  header{max-width:94vw}
+  .hero{flex-direction:column-reverse;text-align:center;gap:24px}
+  .about{flex-direction:column}
+  .stats-grid{grid-template-columns:1fr}
+}
+
 @media (max-width: 560px) {
   header { max-width: 92vw; }
   .hero  { flex-direction:column-reverse; text-align:center; gap:24px; }
   .hero .cta { float: none; margin: 14px auto; }
   .about { flex-direction:column; }
+  .stats-grid { grid-template-columns: 1fr; }
 }
 

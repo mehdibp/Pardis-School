@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> مدرسه غیرانتفاعی پردیس دانش </title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
 
@@ -57,6 +58,40 @@
         </span>
         <span onclick="MoreLess()" id="myBtn"> (توضیحات بیشتر) </span>
       </p>
+    </div>
+  </section>
+
+  <!-- Statistical information Section -->
+  <section id="stats" class="stats">
+    <div class="stats-header">
+      <h2> اطلاعات آماری <span id="stats-year" class="year-badge"></span></h2>
+    </div>
+
+    <div class="stats-grid">
+      <!-- Cards: data-key must match the keys in the txt file -->
+      <div class="stat-card">
+        <div class="stat-icon"><img src="assets/pictures/decor/teacher.png" alt="teachers"></div>
+        <div class="stat-label"> دبیران </div>
+        <div class="stat-value" data-key="teachers"> 0 </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><img src="assets/pictures/decor/Equipment.png" alt="Equipment"></div>
+        <div class="stat-label"> تجهیزات </div>
+        <div class="stat-value" data-key="equipment"> 0 </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><img src="assets/pictures/decor/student.png" alt="Studying"></div>
+        <div class="stat-label"> در حال تحصیل </div>
+        <div class="stat-value" data-key="enrolled"> 0 </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><img src="assets/pictures/decor/happy-kids.png" alt="Successful students"></div>
+        <div class="stat-label"> بچه‌های موفق </div>
+        <div class="stat-value" data-key="alumni"> 0 </div>
+      </div>
     </div>
   </section>
 
