@@ -4,11 +4,17 @@
   --color_2: #C5B0CD;
   --color_3: #415E72;
   --color_4: #17313E;
+
+  --box_color_1: 175, 145, 231;  /* #af91e7 */
+  --box_color_2: 255, 211, 77 ;  /* #ffd34d */
+  --box_color_3: 123, 224, 151;  /* #7be097 */
+  --box_color_4: 131, 203, 235;  /* #83CBEB */
+  --box_color_5: 255, 88 , 244;  /* #ff58f4 */
 }
 * { box-sizing: border-box; text-decoration: none; }
 body {
   margin: 0;
-  font-family: "Vazir", sans-serif;
+  font-family: "UKIJBom", "Vazir", sans-serif;
   text-align: justify;
   background: var(--color_1);
   color: #fff;
@@ -46,8 +52,8 @@ header.scrolled {
   min-height:100vh; padding: 120px 8% 0px; background-color: var(--color_4);
 }
 .hero-text    { padding-bottom: 40px; min-width: 0; z-index: 1;}
-.hero-text h1 { font-family: 'UKIJBom'; font-size: 5rem; margin:0; }
-.hero-text p  { font-family: 'UKIJBom'; font-size: 1.8rem; margin:16px 0; }
+.hero-text h1 { font-size: 5rem; margin:0; }
+.hero-text p  { font-size: 1.8rem; margin:16px 0; }
 
 .hero .cta {
   display:block; margin-top:14px; padding:10px 20px; border:1px solid #fff;
@@ -86,6 +92,70 @@ header.scrolled {
 .stat-label    { margin-top:14px; font-weight:900; font-size:1.6rem; }
 .stat-value    { margin-top:6px; font-weight:900; font-size:2.4rem; }
 
+
+/* Curriculum ----------------------------------------------------------- */
+.classes    {background: var(--color_2); color: #1b1b1b; padding: 90px 6%;}
+.classes h2 {text-align: center; margin: 0 0 28px; font-size: 28px; }
+.CurriculumSwiper { overflow-x: clip; overflow-y: visible; width: 90%; }
+
+.card {
+  height: auto; border-radius:32px; padding:28px 24px;
+  background:#fff; text-align:center; box-shadow: inset 0 0 28px rgba(0,0,0,.18);
+  transition:transform .25s ease, filter .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-15px); filter: brightness(1.06); }
+.card-icon  { display:block; margin:25px auto; }
+.card h3    { margin:15px 0; font-size:22px; }
+.card p     { font-size:14px; line-height:2; margin:0 0 18px; }
+
+.btn { 
+  display:inline-block; padding:12px 20px; border-radius:999px; margin: 15px auto;
+  color:#fff; text-decoration:none; font-weight:800;
+}
+
+/* Colors */
+.btn.color1 { background: rgba(var(--box_color_1), 1); }
+.btn.color2 { background: rgba(var(--box_color_2), 1); }
+.btn.color3 { background: rgba(var(--box_color_3), 1); }
+.btn.color4 { background: rgba(var(--box_color_4), 1); }
+.btn.color5 { background: rgba(var(--box_color_5), 1); }
+
+.theme-color1 { background: linear-gradient(180deg, rgba(var(--box_color_1), 1), rgba(var(--box_color_1), 0.125), rgba(var(--box_color_1), 0)); box-shadow: inset 0 0 15px rgba(var(--box_color_1), 0.25); }
+.theme-color2 { background: linear-gradient(180deg, rgba(var(--box_color_2), 1), rgba(var(--box_color_2), 0.125), rgba(var(--box_color_2), 0)); box-shadow: inset 0 0 15px rgba(var(--box_color_2), 0.25); }
+.theme-color3 { background: linear-gradient(180deg, rgba(var(--box_color_3), 1), rgba(var(--box_color_3), 0.125), rgba(var(--box_color_3), 0)); box-shadow: inset 0 0 15px rgba(var(--box_color_3), 0.25); }
+.theme-color4 { background: linear-gradient(180deg, rgba(var(--box_color_4), 1), rgba(var(--box_color_4), 0.125), rgba(var(--box_color_4), 0)); box-shadow: inset 0 0 15px rgba(var(--box_color_4), 0.25); }
+.theme-color5 { background: linear-gradient(180deg, rgba(var(--box_color_5), 1), rgba(var(--box_color_5), 0.125), rgba(var(--box_color_5), 0)); box-shadow: inset 0 0 15px rgba(var(--box_color_5), 0.25); }
+
+.theme-color1:hover { box-shadow: 0 5px 20px 5px rgba(var(--box_color_1), 0.3); }
+.theme-color2:hover { box-shadow: 0 5px 20px 5px rgba(var(--box_color_2), 0.3); }
+.theme-color3:hover { box-shadow: 0 5px 20px 5px rgba(var(--box_color_3), 0.3); }
+.theme-color4:hover { box-shadow: 0 5px 20px 5px rgba(var(--box_color_4), 0.3); }
+.theme-color5:hover { box-shadow: 0 5px 20px 5px rgba(var(--box_color_5), 0.3); }
+
+
+/* Teachers ------------------------------------------------------------- */
+.teachers { text-align: center; padding: 40px 20px; color: #222; }
+
+.section-title { font-size: 26px; font-weight: bold; margin-bottom: 30px; }
+
+.teacher-img  { position: relative; overflow: hidden; border-radius: 15px; line-height: 0;}
+.teacher-img img { width: 100%; border-radius: 15px; transition: 0.3s ease; }
+
+/* Hover effect on image */
+.teacher-img:hover img { filter: brightness(50%); }
+.teacher-img .overlay { 
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; 
+  justify-content: center; align-items: center; gap: 20px; opacity: 0; 
+  background: rgba(255, 255, 255, 0.3); transition: opacity 0.3s ease; 
+}
+.teacher-img:hover .overlay { opacity: 1; }
+
+/* icons */
+.icon { width: 70px !important; padding: 12px; border-radius: 50%; transition: all 0.3s ease; }
+.icon:hover { color: #fff; transform: scale(1.2); }
+
+.teacher-card h3 { margin-top: 15px; font-weight: bold; }
+.teacher-card p { color: #444; }
 
 
 

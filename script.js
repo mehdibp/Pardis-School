@@ -92,3 +92,31 @@ function animateStatsOnView() {
 }
 
 loadStats();      // Start
+
+// Initializing and configuring the slider (Swiper) after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+  var swiper = new Swiper(".CurriculumSwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,                 // Being infinite
+    // centeredSlides: true,       // There is always someone in the middle
+    grabCursor: true,           // Mouse in the shape of a hand
+    slideToClickedSlide: true,  // Click and it will come in the middle
+    autoplay: false,            // Automatic movement
+    keyboard: true,             // Ability to control the slider with the keyboard
+  });
+});
+
+// Initialize and configure the (Teacher Swiper) after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+  var swiper = new Swiper(".TeacherSwiper", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,                 // Being infinite
+    // centeredSlides: true,       // There is always someone in the middle
+    grabCursor: true,           // Mouse in the shape of a hand
+    slideToClickedSlide: true,  // Click and it will come in the middle
+    autoplay: false,            // Automatic movement
+    keyboard: true,             // Ability to control the slider with the keyboard
+  });
+});
