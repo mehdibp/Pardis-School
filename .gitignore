@@ -178,4 +178,9 @@ __marimo__/
 # My File and Folders
 
 /tests
+/test
+
+/assets/pictures/News
+/assets/pictures/Teachers
+
 test.*

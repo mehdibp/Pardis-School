@@ -21,15 +21,15 @@ body {
 }
 
 
-/* Header: Capsular -> Fullwidth after scrolling ------------------------ */
-header {
+/* Menu: Capsular -> Fullwidth after scrolling -------------------------- */
+nav {
   position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
   background: rgba(255,255,255,.14); backdrop-filter: blur(8px);
   border-radius: 40px; padding: 12px 25px; gap: 30px; width: 80%; 
   display: flex; justify-content: space-between; align-items: center;
   transition: all 1s ease; z-index: 1000;
 }
-header.scrolled {
+nav.scrolled {
   top: 0; width: 100%; max-width: 100%;
   border-radius: 0; padding: 15px 4%;
 }
@@ -46,25 +46,25 @@ header.scrolled {
 .important-link:hover { background:#fff; color: var(--color_4); }
 
 
-/* Hero ----------------------------------------------------------------- */
-.hero{
+/* Header ---------------------------------------------------------------- */
+header{
   display:flex; align-items:center; justify-content:space-between;
-  min-height:100vh; padding: 120px 8% 0px; background-color: var(--color_4);
+  min-height:100vh; padding: 120px 6% 0px; background-color: var(--color_4);
 }
-.hero-text    { padding-bottom: 40px; min-width: 0; z-index: 1;}
-.hero-text h1 { font-size: 5rem; margin:0; }
-.hero-text p  { font-size: 1.8rem; margin:16px 0; }
+.header-text    { padding-bottom: 40px; min-width: 0; z-index: 1;}
+.header-text h1 { font-size: 5rem; margin:0; }
+.header-text p  { font-size: 1.8rem; margin:16px 0; }
 
-.hero .cta {
+header .cta {
   display:block; margin-top:14px; padding:10px 20px; border:1px solid #fff;
   border-radius:22px; text-decoration:none; color:#fff; width: max-content; float: left;
 }
-.hero img { max-width:360px; height:auto; }
+header img { max-width:360px; height:auto; }
 
 
 /* About Us ------------------------------------------------------------- */
 .about {
-  display: flex; align-items: center; gap: 40px; padding: 80px 8% 0px;
+  display: flex; align-items: center; gap: 40px; padding: 80px 6% 0px;
   background: var(--color_1); color:#222;
 }
 .about-image img { max-width:360px; border-radius:14px; }
@@ -134,7 +134,7 @@ header.scrolled {
 
 
 /* Teachers ------------------------------------------------------------- */
-.teachers { text-align: center; padding: 40px 20px; color: #222; }
+.teachers { text-align: center; padding: 40px 6%; color: #222; }
 
 .section-title { font-size: 26px; font-weight: bold; margin-bottom: 30px; }
 
@@ -239,6 +239,7 @@ header.scrolled {
 .send-btn:hover { width: 70px; }
 .send-btn:hover .comment-box-text { opacity: 1; }
 .send-btn:hover .comment-box-icon { opacity: 0; }
+
 
 
 /* Responsive ----------------------------------------------------------- */
