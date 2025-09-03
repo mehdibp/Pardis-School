@@ -205,10 +205,50 @@ header.scrolled {
 .news-small-1 .n-title, .news-small-2 .n-title{ font-size: 1.15rem; }
 
 
+/*  Footer -------------------------------------------------------------- */
+.site-footer { background-color: #3d5a6c; color: #fff; padding: 40px 6%;}
+.footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
+
+.footer-map { min-width: 300px; }
+.footer-map iframe { width: 100%; height: 250px; border: 0; border-radius: 10px; }
+
+.footer-contact { min-width: 220px; text-align: right; padding-right: 20px;}
+.footer-contact h3 { margin-bottom: 20px; font-size: 18px; }
+.footer-contact p  { margin: 8px 0; }
+.footer-contact a  { color: white; text-decoration: none; font-size: 14px; }
+.footer-contact a:hover { text-decoration: underline; color: #ff681d;}
+
+.footer-comments { flex: 1; min-width: 300px; }
+.footer-comments h3 { margin-bottom: 10px; font-size: 18px; }
+.footer-comments p  { margin-bottom: 15px; font-size: 14px; }
+.footer-comments textarea { 
+  width: 100%; height: 120px; border-radius: 6px; border: none; 
+  padding: 10px; font-size: 14px; resize: none; outline: none;
+}
+.footer-comments button { border: none; cursor: pointer; transition: 0.3s; }
+.footer-comments button:hover { background: #ff681d; }
+
+.comment-box { display: flex; border-radius: 10px; background: #f1f1f1; }
+.send-btn {
+  background: #173240; color: white; border-radius: 10px 0 0 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; width: 50px;
+}
+.send-btn .comment-box-text { opacity: 0; font-family: 'UKIJBom'; transition: opacity 0.3s ease; transform: rotate(-90deg); }
+.send-btn .comment-box-icon { position: absolute; }
+.send-btn:hover { width: 70px; }
+.send-btn:hover .comment-box-text { opacity: 1; }
+.send-btn:hover .comment-box-icon { opacity: 0; }
+
 
 /* Responsive ----------------------------------------------------------- */
 @media (max-width: 1000px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .footer-container { flex-direction: column; text-align: center; }
+  .footer-contact { text-align: center; }
 }
 
 @media (max-width:720px){
