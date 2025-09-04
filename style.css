@@ -4,6 +4,7 @@
   --color_2: #C5B0CD;
   --color_3: #415E72;
   --color_4: #17313E;
+  --color_5: #ff681d;
 
   --box_color_1: 175, 145, 231;  /* #af91e7 */
   --box_color_2: 255, 211, 77 ;  /* #ffd34d */
@@ -45,6 +46,10 @@ nav.scrolled {
 }
 .important-link:hover { background:#fff; color: var(--color_4); }
 
+nav.light .nav-links a  { color: #000; }
+nav.light .important-link { background: #fff; border:1px solid #000; color:#000; }
+nav.light .important-link:hover { background: var(--color_4); color:#fff; }
+
 
 /* Header ---------------------------------------------------------------- */
 header{
@@ -59,7 +64,7 @@ header .cta {
   display:block; margin-top:14px; padding:10px 20px; border:1px solid #fff;
   border-radius:22px; text-decoration:none; color:#fff; width: max-content; float: left;
 }
-header img { max-width:360px; height:auto; }
+header img { height:80vh; }
 
 
 /* About Us ------------------------------------------------------------- */
@@ -159,7 +164,7 @@ header img { max-width:360px; height:auto; }
 
 
 /* News and Events ------------------------------------------------------ */
-.news{ background:#cbb4d3; padding:70px 6%; color:#0f2a38; }
+.news{ background:#cbb4d3; padding:70px 6%; color:#0f2a38; overflow: hidden;}
 .news-title-sec{ text-align:center; margin:0 0 22px; font-size:28px; font-weight:900; color:#0f2a38; }
 
 .news-layout  { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; }
@@ -181,7 +186,7 @@ header img { max-width:360px; height:auto; }
   display: inline-block; text-decoration:none; color:#102a36;
   font-weight:900; line-height:1.6; transition:color .25s ease;
 }
-.n-title:hover{ color: #ff681d; }
+.n-title:hover{ color: var(--color_5); }
 .n-title.big{ font-size:1.35rem; margin-bottom:8px; }
 
 .pos-badge  { position: relative; display: flex; justify-content: end; top:-25px; padding: 0 25px; }
@@ -205,8 +210,32 @@ header img { max-width:360px; height:auto; }
 .news-small-1 .n-title, .news-small-2 .n-title{ font-size: 1.15rem; }
 
 
-/*  Footer -------------------------------------------------------------- */
-.site-footer { background-color: #3d5a6c; color: #fff; padding: 40px 6%;}
+
+/* Scroll animations explanation */
+.news .hidden { opacity: 0; transition: all 0.8s ease; }
+.news .show   { opacity: 1; transform: translate(0,0); }
+.from-left   { transform: translateX(-120px); }
+.from-right  { transform: translateX( 120px); }
+.from-bottom { transform: translateY( 120px); }
+.from-top    { transform: translateY(-120px); }
+
+
+/* Gallery -------------------------------------------------------------- */
+.gallery { background: var(--color_3); }
+.gallery img { width: 100%; height: 200%; object-fit: cover; }
+
+.gallery img:hover { transform: scale(1.02); }
+
+/* Lightbox */
+.lightbox {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.75); justify-content: center; align-items: center; z-index: 9999;
+}
+.lightbox img { max-width: 90%; max-height: 90%; border-radius: 6px; }
+
+
+/* Footer --------------------------------------------------------------- */
+.site-footer { background-color: var(--color_3); color: #fff; padding: 40px 6%;}
 .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px; }
 
 .footer-map { min-width: 300px; }
@@ -216,7 +245,7 @@ header img { max-width:360px; height:auto; }
 .footer-contact h3 { margin-bottom: 20px; font-size: 18px; }
 .footer-contact p  { margin: 8px 0; }
 .footer-contact a  { color: white; text-decoration: none; font-size: 14px; }
-.footer-contact a:hover { text-decoration: underline; color: #ff681d;}
+.footer-contact a:hover { text-decoration: underline; color: var(--color_5);}
 
 .footer-comments { flex: 1; min-width: 300px; }
 .footer-comments h3 { margin-bottom: 10px; font-size: 18px; }
@@ -226,11 +255,11 @@ header img { max-width:360px; height:auto; }
   padding: 10px; font-size: 14px; resize: none; outline: none;
 }
 .footer-comments button { border: none; cursor: pointer; transition: 0.3s; }
-.footer-comments button:hover { background: #ff681d; }
+.footer-comments button:hover { background: var(--color_5); }
 
 .comment-box { display: flex; border-radius: 10px; background: #f1f1f1; }
 .send-btn {
-  background: #173240; color: white; border-radius: 10px 0 0 10px;
+  background: var(--color_4); color: white; border-radius: 10px 0 0 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 16px; width: 50px;
 }

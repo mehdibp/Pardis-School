@@ -1,62 +1,57 @@
-// Changing menu mode when scrolling --------------------------------------
-window.addEventListener("scroll", function () {
-  const navbar = document.getElementById("navbar");
-  if (window.scrollY > 50) { navbar.classList.add("scrolled"); } 
-  else { navbar.classList.remove("scrolled"); }
-});
+// Menu --------------------------------------------------------------------------------
+const navbar = document.getElementById('navbar');
 
-// A function to display more descriptions when clicked on <span> ---------
-function MoreLess() {
-  var dots     = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText  = document.getElementById("myBtn");
+function updateNavThemeByPoint() {
+  const rect = navbar.getBoundingClientRect();
+  const x = rect.left + Math.min(20, rect.width / 2);
+  const y = rect.top + rect.height / 2;
+  const elems = document.elementsFromPoint(x, y);
 
-    if (dots.style.display === "none") {
-      dots.style.display = "inline";
-      btnText.innerHTML = "(توضیحات بیشتر)";
-      moreText.style.display = "none";
-    } else {
-      dots.style.display = "none";
-      btnText.innerHTML = "(توضیحات کمتر)";
-      moreText.style.display = "inline";
-    }
+  const section = elems.find(el =>
+    el !== navbar && el.closest?.('section, header, footer')
+  )?.closest('section, header, footer');
+
+  if (section) navbar.classList.toggle('light', section.dataset?.theme === 'light');
 }
 
-// Loading and displaying statistics from a txt file ----------------------
-async function loadStats() {
-
-  const res = await fetch("assets/document/stats.txt");
-  const text = await res.text();
-
-  // We expect a simple CSV format: year, teachers, equipment, enrolled, alumn
-  // Empty lines or lines commented with # are ignored; last valid line => current statistics
-  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith("#"));
-  const last = lines[lines.length - 1];
-  const parts = last.split(",").map(s => s.trim());
-
-  const [year, teachers, equipment, enrolled, alumni] = parts.map((v, i) => i === 0 ? v : Number(v));
-  const map = { teachers, equipment, enrolled, alumni };
-
-  // درج سال
-  const yearBadge = document.getElementById("stats-year");
-  if (yearBadge) yearBadge.textContent = `آمار سال ${year}`;
-
-  // Maintaining targets for counting animation
-  document.querySelectorAll(".stat-value").forEach(el => {
-    const key = el.getAttribute("data-key");
-    if (key && map[key] != null) {
-      el.dataset.target = String(map[key]);
-      el.textContent = "0";
-    }
+function initNavbar() {
+  // Changing menu mode when scrolling 
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) navbar.classList.add("scrolled");
+    else navbar.classList.remove("scrolled");
   });
 
-  // Countdown animation when section is viewed
-  animateStatsOnView();
+  window.addEventListener('resize', updateNavThemeByPoint);
+  updateNavThemeByPoint();
+
+  const navObserver = new MutationObserver(() => updateNavThemeByPoint());
+  navObserver.observe(navbar, { attributes: true, attributeFilter: ['class', 'style'] });
 }
 
-// A function to run a counting animation when the "Statistical information" section comes into view
-function animateStatsOnView() {
-  const section = document.getElementById("stats");
+
+// About -------------------------------------------------------------------------------
+function MoreLess() {
+  // A function to display more descriptions when clicked on <span>
+
+  const dots     = document.getElementById("dots");
+  const moreText = document.getElementById("more");
+  const btnText  = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "(توضیحات بیشتر)";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "(توضیحات کمتر)";
+    moreText.style.display = "inline";
+  }
+}
+
+
+// Statistical information -------------------------------------------------------------
+function animateStatsOnView(section) {
+  // A function to run a counting animation when the "Statistical information" section comes into view
   let started = false;
 
   // Built-in function to count from 0 to the target value to
@@ -75,7 +70,7 @@ function animateStatsOnView() {
   };
 
   // Creates an IntersectionObserver to fire when 35% of the section is in view
-  const io = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !started) {
         started = true;
@@ -91,11 +86,36 @@ function animateStatsOnView() {
   io.observe(section);
 }
 
-loadStats();      // Start
+async function loadStats() {
+  // Loading and displaying statistics from a txt file
 
-// Initializing and configuring the slider (Swiper) after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-  var swiper = new Swiper(".CurriculumSwiper", {
+  const res = await fetch("assets/document/stats.txt");
+  const text = await res.text();
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith("#"));
+  const last = lines[lines.length - 1];
+  const parts = last.split(",").map(s => s.trim());
+  const [year, teachers, equipment, enrolled, alumni] = parts.map((v, i) => i === 0 ? v : Number(v));
+  const map = { teachers, equipment, enrolled, alumni };
+
+  const yearBadge = document.getElementById("stats-year");
+  if (yearBadge) yearBadge.textContent = `آمار سال ${year}`;
+
+  document.querySelectorAll(".stat-value").forEach(el => {
+    const key = el.getAttribute("data-key");
+    if (key && map[key] != null) {
+      el.dataset.target = String(map[key]);
+      el.textContent = "0";
+    }
+  });
+
+  const section = document.getElementById("stats");
+  animateStatsOnView(section);
+}
+
+
+// Swipers -----------------------------------------------------------------------------
+function initCurriculumSwiper() {
+  new Swiper(".CurriculumSwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
     loop: true,                 // Being infinite
@@ -105,11 +125,10 @@ document.addEventListener("DOMContentLoaded", function () {
     autoplay: false,            // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
   });
-});
+}
 
-// Initialize and configure the (Teacher Swiper) after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-  var swiper = new Swiper(".TeacherSwiper", {
+function initTeacherSwiper() {
+  new Swiper(".TeacherSwiper", {
     slidesPerView: 4,
     spaceBetween: 30,
     loop: true,                 // Being infinite
@@ -119,4 +138,68 @@ document.addEventListener("DOMContentLoaded", function () {
     autoplay: false,            // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
   });
+}
+
+
+// Events and News ---------------------------------------------------------------------
+function initEventAnimations() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+}
+
+
+// Gallery -----------------------------------------------------------------------------
+const lightbox    = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+function openLightbox(src) { lightbox.style.display = "flex"; lightboxImg.src = src; }
+function closeLightbox()   { lightbox.style.display = "none"; lightboxImg.src = ""; }
+
+async function loadGallerySlides() {
+  const res = await fetch("/assets/pictures/gallery/gallery.json");
+  const gallerySlides = await res.json();
+  const container = document.getElementById("gallery-container");
+
+  gallerySlides.forEach(slide => {
+    const div = document.createElement("div");
+    div.className = "swiper-slide";
+
+    const img = document.createElement("img");
+    img.src = slide.src;
+    img.alt = "gallery";
+    img.addEventListener("click", () => openLightbox(slide.src));
+
+    div.appendChild(img);
+    container.appendChild(div);
+  });
+
+  new Swiper(".GallerySwiper", {
+    slidesPerView: 5,
+    spaceBetween: 1,
+    loop: true,
+    grabCursor: true,
+    slideToClickedSlide: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    keyboard: true,
+  });
+}
+
+function initGallery() {
+  lightbox.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+
+  loadGallerySlides();
+}
+
+
+// INIT --------------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  initNavbar();
+  initEventAnimations();
+  initCurriculumSwiper();
+  initTeacherSwiper();
+  loadStats();
+  initGallery();
 });
