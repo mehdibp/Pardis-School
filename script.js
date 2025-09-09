@@ -116,27 +116,39 @@ async function loadStats() {
 // Swipers -----------------------------------------------------------------------------
 function initCurriculumSwiper() {
   new Swiper(".CurriculumSwiper", {
-    slidesPerView: 3,
     spaceBetween: 30,
     loop: true,                 // Being infinite
     // centeredSlides: true,       // There is always someone in the middle
     grabCursor: true,           // Mouse in the shape of a hand
     slideToClickedSlide: true,  // Click and it will come in the middle
-    autoplay: false,            // Automatic movement
+    autoplay: { delay: 10000, disableOnInteraction: false },  // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
+
+    breakpoints: {
+      321: { slidesPerView: 1 },
+      577: { slidesPerView: 2 },
+      993: { slidesPerView: 3 } 
+    },
+
   });
 }
 
 function initTeacherSwiper() {
   new Swiper(".TeacherSwiper", {
-    slidesPerView: 4,
     spaceBetween: 30,
     loop: true,                 // Being infinite
     // centeredSlides: true,       // There is always someone in the middle
     grabCursor: true,           // Mouse in the shape of a hand
     slideToClickedSlide: true,  // Click and it will come in the middle
-    autoplay: false,            // Automatic movement
+    autoplay: { delay: 8000, disableOnInteraction: false },  // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
+
+    breakpoints: {
+      321: { slidesPerView: 2 },
+      577: { slidesPerView: 3 },
+      769: { slidesPerView: 4 }
+    },
+
   });
 }
 
@@ -158,7 +170,7 @@ function openLightbox(src) { lightbox.style.display = "flex"; lightboxImg.src = 
 function closeLightbox()   { lightbox.style.display = "none"; lightboxImg.src = ""; }
 
 async function loadGallerySlides() {
-  const res = await fetch("/assets/pictures/gallery/gallery.json");
+  const res = await fetch("./assets/pictures/gallery/gallery.json");
   const gallerySlides = await res.json();
   const container = document.getElementById("gallery-container");
 
@@ -176,13 +188,21 @@ async function loadGallerySlides() {
   });
 
   new Swiper(".GallerySwiper", {
-    slidesPerView: 5,
     spaceBetween: 1,
     loop: true,
     grabCursor: true,
     slideToClickedSlide: true,
     autoplay: { delay: 3000, disableOnInteraction: false },
     keyboard: true,
+
+    breakpoints: {
+      321: { slidesPerView: 1 },
+      426: { slidesPerView: 2 },
+      577: { slidesPerView: 3 },
+      769: { slidesPerView: 4 },
+      993: { slidesPerView: 5 } 
+    },
+
   });
 }
 
