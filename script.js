@@ -115,13 +115,13 @@ async function loadStats() {
 
 // Swipers -----------------------------------------------------------------------------
 function initCurriculumSwiper() {
-  new Swiper(".CurriculumSwiper", {
+  const swiper = new Swiper(".CurriculumSwiper", {
     spaceBetween: 30,
     loop: true,                 // Being infinite
     // centeredSlides: true,       // There is always someone in the middle
     grabCursor: true,           // Mouse in the shape of a hand
     slideToClickedSlide: true,  // Click and it will come in the middle
-    autoplay: { delay: 10000, disableOnInteraction: false },  // Automatic movement
+    autoplay: false,            // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
 
     breakpoints: {
@@ -131,16 +131,18 @@ function initCurriculumSwiper() {
     },
 
   });
+
+  setupSwiperInteraction(swiper, ".CurriculumSwiper", ".curriculum-card");
 }
 
 function initTeacherSwiper() {
-  new Swiper(".TeacherSwiper", {
+  const swiper = new Swiper(".TeacherSwiper", {
     spaceBetween: 30,
     loop: true,                 // Being infinite
     // centeredSlides: true,       // There is always someone in the middle
     grabCursor: true,           // Mouse in the shape of a hand
     slideToClickedSlide: true,  // Click and it will come in the middle
-    autoplay: { delay: 8000, disableOnInteraction: false },  // Automatic movement
+    autoplay: false,            // Automatic movement
     keyboard: true,             // Ability to control the slider with the keyboard
 
     breakpoints: {
@@ -150,6 +152,30 @@ function initTeacherSwiper() {
     },
 
   });
+
+  setupSwiperInteraction(swiper, ".TeacherSwiper", ".teacher-card");
+}
+
+function setupSwiperInteraction(swiper, swiperSelector, cardSelector) {
+
+  let interacted = false;
+  setTimeout(() => { swiper.on("slideChange", () => { interacted = true; }); }, 2000);
+  swiper.el.addEventListener("click"      , () => interacted = true);
+  swiper.el.addEventListener("touchstart" , () => interacted = true);
+  swiper.el.addEventListener("pointerdown", () => interacted = true);
+  document.addEventListener ("keydown", (e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { interacted=true; } });
+  
+  // Every 10 seconds → only if the user has not interacted yet
+  const triggerNudge = () => {
+    if (!interacted) {
+      const allSlides = document.querySelectorAll(`${swiperSelector} ${cardSelector}`);
+      allSlides.forEach(card => {
+        card.classList.add("nudge");
+        setTimeout(() => card.classList.remove("nudge"), 2000);
+      });
+    }
+  };
+  setTimeout(() => { triggerNudge(); setInterval(triggerNudge, 8000); }, 1500);
 }
 
 
