@@ -28,6 +28,36 @@ function initNavbar() {
   navObserver.observe(navbar, { attributes: true, attributeFilter: ['class', 'style'] });
 }
 
+function initHamburger() {
+  const hamburgerBtn = document.getElementById  ('hamburger-btn');
+  const navLinks     = document.querySelector   ('.nav-links');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
+
+  if (!hamburgerBtn || !navLinks) return;
+
+  hamburgerBtn.addEventListener("click", () => {
+    const isActive = hamburgerBtn.classList.contains("active");
+
+    if (isActive) {
+      navLinks.classList.remove("show");
+      navLinks.classList.add("hide");
+      hamburgerBtn.classList.remove("active");
+      setTimeout(() => { navLinks.classList.remove("hide"); }, 1000);
+
+    } else {
+      hamburgerBtn.classList.add("active");
+      navLinks.classList.add("show");
+    }
+  });
+
+  navLinkItems.forEach(link => {
+    link.addEventListener("click", () => {
+      hamburgerBtn.classList.remove("active");
+      navLinks.classList.remove("show");
+    });
+  });
+}
+
 
 // About -------------------------------------------------------------------------------
 function MoreLess() {
@@ -175,7 +205,21 @@ function setupSwiperInteraction(swiper, swiperSelector, cardSelector) {
       });
     }
   };
-  setTimeout(() => { triggerNudge(); setInterval(triggerNudge, 8000); }, 1500);
+  // setTimeout(() => { triggerNudge(); setInterval(triggerNudge, 8000); }, 1500);
+
+  const target = document.querySelector(swiperSelector);
+  if (target) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { 
+          triggerNudge(); 
+          setInterval(triggerNudge, 8000); 
+          obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.35 });
+    observer.observe(target);
+  }
+
 }
 
 
@@ -243,6 +287,7 @@ function initGallery() {
 // INIT --------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
+  initHamburger();
   initEventAnimations();
   initCurriculumSwiper();
   initTeacherSwiper();
