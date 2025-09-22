@@ -289,11 +289,11 @@ function initGallery() {
 
 // INIT --------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  initNavbar();
-  initHamburger();
-  initEventAnimations();
-  initCurriculumSwiper();
-  initTeacherSwiper();
-  loadStats();
-  initGallery();
+  if (document.getElementById("navbar"))                initNavbar();
+  if (document.getElementById("hamburger-btn"))         initHamburger();
+  if (document.querySelector (".hidden"))               initEventAnimations();
+  if (document.querySelector (".CurriculumSwiper"))     initCurriculumSwiper();
+  if (document.querySelector (".TeacherSwiper"))        initTeacherSwiper();
+  if (document.getElementById("stats"))                 loadStats();
+  if (document.getElementById("gallery-container"))     initGallery();
 });
