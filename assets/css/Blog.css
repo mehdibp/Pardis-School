@@ -1,17 +1,4 @@
 /* Base ----------------------------------------------------------------- */
-:root {
-  --color_1: #F3E2D4;
-  --color_2: #C5B0CD;
-  --color_3: #415E72;
-  --color_4: #17313E;
-  --color_5: #ff681d;
-
-  --box_color_1: 175, 145, 231;  /* #af91e7 */
-  --box_color_2: 255, 211, 77 ;  /* #ffd34d */
-  --box_color_3: 123, 224, 151;  /* #7be097 */
-  --box_color_4: 131, 203, 235;  /* #83CBEB */
-  --box_color_5: 255, 88 , 244;  /* #ff58f4 */
-}
 /* a:hover { color: var(--color_5) !important; } */
 
 
@@ -27,9 +14,38 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 .post-title { font-size: 3rem; font-weight: bold; margin-bottom: 20px; }
 
 .breadcrumb         { font-size: 2rem; color: #fff; }
-.breadcrumb a       { color: #fff; text-decoration: none; margin: 0 5px; }
-.breadcrumb a:hover { color: var(--color_5); text-decoration: underline; }
+.breadcrumb a       { color: #fff; text-decoration: none; margin: 0 5px; transition: color 0.4s ease; }
+.breadcrumb a:hover { color: var(--color_5); }
 .breadcrumb span    { margin: 0 5px; opacity: 0.8; }
+
+
+/* Blog List ------------------------------------------------------------- */
+.blog-list { padding: 60px 9%; margin: 0 auto; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+
+.blog-item { border-radius: 20px; overflow: hidden; transition: transform 0.3s ease; position: relative; }
+.blog-item:hover { transform: translateY(-5px) scale(1.01); }
+
+.blog-img { position: relative; }
+.blog-img img { width: 100%; display: block; }
+
+.blog-date {
+  position: absolute; bottom: -15px; right: 25px; backdrop-filter: blur(8px);
+  padding: 8px 12px; border-radius: 20px; font-size: 1rem; transition: transform 0.4s ease;
+}
+.blog-item:hover .blog-date { transform: scale(1.05); }
+
+.blog-content { padding: 25px; }
+.blog-content p  { font-size: 1rem; line-height: 1.7; margin-bottom: 12px; color: #555; }
+.blog-content h3 { font-size: 1.25rem; margin-bottom: 10px; font-weight: bold; color: #000; transition: color 0.4s ease; }
+.blog-content h3:hover { color: var(--color_5); }
+
+.pagination   { text-align: center; margin-top: 40px; }
+.pagination a {
+  margin: 0 5px; padding: 8px 14px; background: #fff; border-radius: 8px; color: #333; font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: background-color 0.5s ease;
+}
+.pagination a:hover, .pagination a.active { background: var(--color_5); color: #fff; }
 
 
 /* Blog ------------------------------------------------------------------ */
@@ -49,6 +65,10 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 
 /* Responsive ----------------------------------------------------------- */
 @media (max-width: 992px) {
+  .blog-list       { padding: 60px 5%; }
+  .blog-content h3 { font-size: 1.1rem; }
+  .blog-content p  { font-size: 0.9rem; }
+
   .post-title { font-size: 2.5rem; }
   .breadcrumb { font-size: 1.6rem; }
 
@@ -58,6 +78,10 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 }
 
 @media (max-width: 768px) {
+  .blog-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+  .blog-content { padding: 20px; }
+
   .post-title { font-size: 2.2rem; }
   .breadcrumb { font-size: 1.4rem; }
   header .overlay { padding: 15px; }
@@ -68,6 +92,12 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 }
 
 @media (max-width: 576px) {
+  .blog-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .blog-content h3 { font-size: 1rem; }
+  .blog-content p  { font-size: 0.8rem; }
+  .blog-date       { font-size: 0.85rem; padding: 6px 10px; }
+
   .post-title { font-size: 1.9rem; }
   .breadcrumb { font-size: 1.2rem; }
 
@@ -80,6 +110,14 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 }
 
 @media (max-width: 425px) {
+  .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  .blog-list { padding: 60px 2.5%; }
+  .blog-item { margin: 0 !important; border-radius: 15px; }
+  .blog-content { padding: 15px; }
+
+  .pagination a { font-size: 0.8rem; padding: 6px 12px; }
+
   .post-title { font-size: 1.8rem; }
   .breadcrumb { font-size: 1.1rem; }
   .breadcrumb a { margin: 0 3px; }
@@ -90,6 +128,10 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 }
 
 @media (max-width: 375px) {
+  .blog-date { font-size: 0.8rem; padding: 5px 8px; right: 15px; }
+  .blog-content h3 { font-size: 0.9rem; }
+  .blog-content p  { font-size: 0.75rem; }
+
   .post-title { font-size: 1.6rem; }
   .breadcrumb { font-size: 1rem; }
 
@@ -99,6 +141,9 @@ header .overlay { position: relative; z-index: 1; padding: 20px; }
 }
 
 @media (max-width: 320px) {
+  .container { padding: 60px 10px; }
+  .pagination a { margin: 0 3px; padding: 5px 10px; }
+
   .post-title { font-size: 1.4rem; }
   .breadcrumb { font-size: 0.9rem; }
 
