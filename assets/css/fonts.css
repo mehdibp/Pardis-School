@@ -1,12 +1,45 @@
 /* Fonts ---------------------------------------------------------------- */
 @font-face {
   font-family: 'UKIJBom';
-  src: url('../fonts/UKIJ-Bom/UKIJBom.eot')   format('embedded-opentype'),
+  src: url('../fonts/UKIJ-Bom/UKIJBom.eot'  ) format('embedded-opentype'),
        url('../fonts/UKIJ-Bom/UKIJBom.woff2') format('woff2'),
-       url('../fonts/UKIJ-Bom/UKIJBom.woff')  format('woff'),
-       url('../fonts/UKIJ-Bom/UKIJBom.ttf')   format('truetype');
+       url('../fonts/UKIJ-Bom/UKIJBom.woff' ) format('woff'),
+       url('../fonts/UKIJ-Bom/UKIJBom.ttf'  ) format('truetype');
        
   font-display: swap;
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'UKIJBom';
+  src: url('../fonts/Hoda/Hoda.eot'  ) format('embedded-opentype'),
+       url('../fonts/Hoda/Hoda.woff2') format('woff2'),
+       url('../fonts/Hoda/Hoda.woff' ) format('woff'),
+       url('../fonts/Hoda/Hoda.ttf'  ) format('truetype');
+       
+  unicode-range: U+0030-0039, U+06F0-06F9;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('../fonts/Shabnam/Shabnam-Bold.eot'  ) format('embedded-opentype'),
+       url('../fonts/Shabnam/Shabnam-Bold.woff2') format('woff2'),
+       url('../fonts/Shabnam/Shabnam-Bold.woff' ) format('woff'),
+       url('../fonts/Shabnam/Shabnam-Bold.ttf'  ) format('truetype');
+       
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Blabeloo';
+  src: url('../fonts/Blabeloo/Blabeloo.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hoda';
+  src: url('../fonts/Hoda/Hoda.eot'  ) format('embedded-opentype'),
+       url('../fonts/Hoda/Hoda.woff2') format('woff2'),
+       url('../fonts/Hoda/Hoda.woff' ) format('woff'),
+       url('../fonts/Hoda/Hoda.ttf'  ) format('truetype');
 }

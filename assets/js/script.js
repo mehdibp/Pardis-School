@@ -146,6 +146,30 @@ async function loadStats() {
 }
 
 
+// Curriculum --------------------------------------------------------------------------
+function applyCurriculumColors() {
+  const cards  = document.querySelectorAll(".curriculum-card");
+  const colors = [ "#af91e7", "#ffd34d", "#7be097", "#83CBEB", "#ff58f4", "#fe7743", "#6e8cfb" ];
+
+  for (let i = 0; i < cards.length; i++) {
+    const btn_color           = colors[i];
+    const gradient_color      = `linear-gradient(180deg, ${colors[i]}, ${colors[i]+'20'}, ${colors[i]+'00'})`;
+    const inset_shadow_color  = `inset 0 0 15px ${colors[i]+'40'}`;
+    const outer_shadow_color  = `0 5px 20px 5px ${colors[i]+'4d'}`;
+
+    cards[i].querySelector(".btn").style.background = btn_color;
+
+    cards[i].style.background = gradient_color;
+    cards[i].style.boxShadow  = inset_shadow_color;
+    cards[i].addEventListener("mouseenter", () => { cards[i].style.boxShadow = outer_shadow_color; });
+    cards[i].addEventListener("mouseleave", () => { cards[i].style.boxShadow = inset_shadow_color; });
+    
+    cards[i].addEventListener("touchstart" , () => { cards[i].style.boxShadow = outer_shadow_color; }, { passive: true });
+    cards[i].addEventListener("touchend"   , () => { cards[i].style.boxShadow = inset_shadow_color; }, { passive: true });
+  }
+}
+
+
 // Swipers -----------------------------------------------------------------------------
 function initCurriculumSwiper() {
   const swiper = new Swiper(".CurriculumSwiper", {
@@ -194,7 +218,7 @@ function setupSwiperInteraction(swiper, swiperSelector, cardSelector) {
   let interacted = false;
   setTimeout(() => { swiper.on("slideChange", () => { interacted = true; }); }, 2000);
   swiper.el.addEventListener("click"      , () => interacted = true);
-  swiper.el.addEventListener("touchstart" , () => interacted = true);
+  swiper.el.addEventListener("touchstart" , () => interacted = true, { passive: true });
   swiper.el.addEventListener("pointerdown", () => interacted = true);
   document.addEventListener ("keydown", (e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { interacted=true; } });
   
@@ -291,9 +315,10 @@ function initGallery() {
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("navbar"))                initNavbar();
   if (document.getElementById("hamburger-btn"))         initHamburger();
-  if (document.querySelector (".hidden"))               initEventAnimations();
+  if (document.getElementById("stats"))                 loadStats();
+  if (document.querySelector (".curriculum-card"))      applyCurriculumColors()
   if (document.querySelector (".CurriculumSwiper"))     initCurriculumSwiper();
   if (document.querySelector (".TeacherSwiper"))        initTeacherSwiper();
-  if (document.getElementById("stats"))                 loadStats();
+  if (document.querySelector (".hidden"))               initEventAnimations();
   if (document.getElementById("gallery-container"))     initGallery();
 });

@@ -1,7 +1,3 @@
-/* Base ----------------------------------------------------------------- */
-/* a:hover { color: var(--color_5) !important; } */
-
-
 /* Header ---------------------------------------------------------------- */
 header {
   background: url("../pictures/Blog/Header.png") center/cover no-repeat fixed;
@@ -13,10 +9,9 @@ header::before  { content: ""; position: absolute; inset: 0; background: rgba(0,
 header .overlay { position: relative; z-index: 1; padding: 20px; }
 .post-title { font-size: 3rem; font-weight: bold; margin-bottom: 20px; }
 
-.breadcrumb         { font-size: 2rem; color: #fff; }
-.breadcrumb a       { color: #fff; text-decoration: none; margin: 0 5px; transition: color 0.4s ease; }
-.breadcrumb a:hover { color: var(--color_5); }
-.breadcrumb span    { margin: 0 5px; opacity: 0.8; }
+.breadcrumb      { font-size: 2rem; }
+.breadcrumb a    { text-decoration: none; margin: 0 5px; transition: color 0.4s ease; }
+.breadcrumb span { margin: 0 5px; opacity: 0.8; }
 
 
 /* Blog List ------------------------------------------------------------- */
