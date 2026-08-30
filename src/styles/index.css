@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@source "../**/*.{js,jsx,ts,tsx}";
+
+html, body, #root { height: 100%; scroll-behavior: smooth; }
+body { 
+  font-family: "UKIJBom", "Vazir", sans-serif;
+  text-align: justify;
+  color: #fff;
+  margin: 0;
+}
+
+@theme {
+  --breakpoint-sm: 36rem;   /* 576px */
+  --breakpoint-md: 48rem;   /* 768px */
+  --breakpoint-lg: 62rem;   /* 992px */
+}
+
+
+/* =======================================================================
+   "Curriculum (classes) & Teachers" and "News & events"
+   ======================================================================= */
+.curriculum-swiper.is-nudging { animation: nudge 2s ease; }
+.teacher-swiper.is-nudging    { animation: nudge 2s ease; }
+@keyframes nudge {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-50px); }
+  60%  { transform: translateX(100px); }
+  100% { transform: translateX(0); }
+}
+
+.scroll-reveal { opacity: 0; transition: all 0.8s ease; pointer-events: none; }
+.scroll-reveal.is-visible { opacity: 1; transform: translate(0,0); pointer-events: auto; }
+.reveal-from-left   { transform: translateX(-120px); }
+.reveal-from-right  { transform: translateX(120px); }
+.reveal-from-bottom { transform: translateY(120px); }
+.reveal-from-top    { transform: translateY(-120px); }
+@media (max-width: 320px) {.reveal-from-left { transform: translateX(-30vw); }}
+
+
