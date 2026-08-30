@@ -201,18 +201,16 @@ dist-ssr
 *.sw?
 
 
+*.png
+*.jpg
+*.zip
 
 # My File and Folders
 /tests
 /test
 
-/assets/pictures/News
-/assets/pictures/Teachers
-/assets/pictures/gallery
-/assets/pictures/Blog
-/assets/fonts
+src/assets/fonts
 
-*.zip
 test.*
 Test.*
 ~$*.pptx
